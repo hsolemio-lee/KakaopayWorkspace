@@ -1,11 +1,7 @@
 <template>
 <div class="text-field-wrapper">
     <p>{{label}}</p>
-    <input
-        :type="type"
-        v-model="value"
-        @change="change"
-    /> 
+    <p>{{value}}<p/> 
 </div>
 </template>
 
@@ -16,20 +12,16 @@ export default {
             type: String,
             default: () => ""
         },
-        type: {
+        value: {
             type: String,
-            default: () => 'text'
+            default: () => ''
         }
     },
     data() {
         return {
-            value: "",
         }
     },
     methods: {
-        change(e) {
-            this.$emit('input', e.target._value);
-        }
     }
 }
 </script>

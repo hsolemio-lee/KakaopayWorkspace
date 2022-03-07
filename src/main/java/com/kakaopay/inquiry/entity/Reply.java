@@ -19,8 +19,6 @@ public class Reply {
     @GeneratedValue
     private Long id;
 
-    @Column(name="inquiryId", nullable = false)
-    private Long inquiryId;
     @Column(name="title", length = 200, nullable = false)
     String title;
     @Column(name="content", length = 5000, nullable = false)

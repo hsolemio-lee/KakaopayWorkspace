@@ -8,13 +8,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     userInfo: null,
-    allUsers: [
-      {id: 1, username: 'sol', password: "1234"}
-    ],
     isLogin: false,
     isLoginError: false,
-
-    progressBar: false,
   },
   mutations: {
     // 로그인 성공
@@ -39,7 +34,6 @@ export default new Vuex.Store({
   },
   actions: {
     // 로그인 시도
-     
     login({ dispatch, commit }, signObj) {
       solAxios.post("/login", signObj)
       .then(res => {
@@ -51,7 +45,6 @@ export default new Vuex.Store({
       .catch(error => {
         console.log(error);
         commit('loginError');
-        alert("Login fail...");
       });
     },
     loginCheck({commit}) {
@@ -61,17 +54,20 @@ export default new Vuex.Store({
       then(res => {
         const loginInfo = res.data;
         let userInfo = {
-          username: loginInfo.username,
-          firstName: loginInfo.firstName,
-          lastName: loginInfo.lastName,
-          email: loginInfo.email,
+          userId: loginInfo.userId,
+          role: loginInfo.role,
         };
         commit('loginSuccess', userInfo);
-        router.push({name: 'home'});
+        if(userInfo.role === 'USER') {
+          router.push({name: 'userHome'});
+        } else if (userInfo.role === 'MANAGER') {
+          router.push({name: 'managerHome'})
+        }
       })
       .catch(error => {
         console.log(error);
         commit('logout');
+        alert("Login fail...");
         router.push({name: 'login'});
       })
     },

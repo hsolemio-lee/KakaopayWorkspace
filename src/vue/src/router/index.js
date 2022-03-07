@@ -14,8 +14,16 @@ const rejectAuthUser = (to, from, next) => {
 }
 
 const authUser = (to, from, next) => {
+  const userInfo = store.state.userInfo;
+  
   if(store.state.isLogin) {
-    next();
+    if(to === 'userHome' && userInfo.role !== 'USER') {
+      next("/403");
+    } else if(to === 'managerHome' && userInfo.role !== 'MANAGER'){
+      next("/403");
+    } else {
+      next();
+    }
   } else {
     next("/loginForm");
   }
@@ -24,14 +32,44 @@ const authUser = (to, from, next) => {
 const routes = [
   {
     path: "/",
-    redirect: "/home"
+    redirect: "/user/home"
   },
   {
-    path: "/home",
-    name: "home",
+    path: "/user/home",
+    name: "userHome",
     beforeEnter: authUser,
     component: () =>
-      import("../views/Home.vue"),
+      import("../views/UserHome.vue"),
+  },
+  {
+    path: "/manager/home",
+    name: "managerHome",
+    beforeEnter: authUser,
+    component: () =>
+      import("../views/ManagerHome.vue"),
+  },
+  {
+    path: "/inquiry/register",
+    name: "registerInquiry",
+    beforeEnter: authUser,
+    component: () =>
+      import("../views/RegisterInquiry.vue"),
+  },
+  {
+    path: "/reply/register",
+    name: "registerReply",
+    beforeEnter: authUser,
+    component: () =>
+      import("../views/RegisterReply.vue"),
+    props: true,
+  },
+  {
+    path: "/inquiry/detail",
+    name: "inquiryDetail",
+    beforeEnter: authUser,
+    component: () =>
+      import("../views/InquiryDetail.vue"),
+    props: true,
   },
   {
     path: "/loginForm",
@@ -39,6 +77,18 @@ const routes = [
     beforeEnter: rejectAuthUser,
     component: () =>
       import("../views/Login.vue"),
+  },
+  {
+    path: "/joinForm",
+    name: "join",
+    component: () =>
+      import("../views/Join.vue"),
+  },
+  {
+    path: "/403",
+    name: "403",
+    component: () =>
+      import("../views/403.vue"),
   },
 ];
 

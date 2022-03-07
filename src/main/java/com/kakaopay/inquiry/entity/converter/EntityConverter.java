@@ -1,5 +1,7 @@
 package com.kakaopay.inquiry.entity.converter;
 
+import com.kakaopay.inquiry.common.util.SecurityUtil;
+
 import java.time.Instant;
 import java.util.List;
 
@@ -12,4 +14,6 @@ public interface EntityConverter<D, E> {
     default Instant getCurrentDateTime() {
         return Instant.now();
     }
+    default String getUserId() { return SecurityUtil.getUserId(); }
+
 }

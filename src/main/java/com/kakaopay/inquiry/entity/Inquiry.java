@@ -25,8 +25,14 @@ public class Inquiry {
     String title;
     @Column(name="content", length = 5000, nullable = false)
     String content;
+    @Column(name="status", length = 20, nullable = false)
+    String status;
     @Column(name="managerId", length = 50)
     String managerId;
     @Column(name="createDate", nullable = false)
     Instant createDate;
+
+    @OneToOne
+    @JoinColumn(name = "replyId")
+    Reply reply;
 }

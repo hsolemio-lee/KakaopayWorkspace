@@ -1,11 +1,13 @@
 <template>
 <div class="text-field-wrapper">
     <p>{{label}}</p>
-    <input
-        :type="type"
-        v-model="value"
+    <select
+        class="select-box"
+        v-model="selected"
         @change="change"
-    /> 
+    >
+        <option v-for="(item, index) in items" :key="index" :value="item.value">{{item.text}}</option>
+    </select> 
 </div>
 </template>
 
@@ -16,19 +18,19 @@ export default {
             type: String,
             default: () => ""
         },
-        type: {
-            type: String,
-            default: () => 'text'
+        items: {
+            type: Array,
+            default: () => []
         }
     },
     data() {
         return {
-            value: "",
+            selected: "",
         }
     },
     methods: {
         change(e) {
-            this.$emit('input', e.target._value);
+            this.$emit('input', e.target.value);
         }
     }
 }

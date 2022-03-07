@@ -13,6 +13,7 @@ public enum ErrorCode {
     UNAUTHORIZED("SOL401-001", "Unauthorized"),
     FORBIDDEN("SOL403-001", "Forbidden"),
     USER_NOT_FOUND("SOL404-001", "User Not Found"),
+    INQUIRY_NOT_FOUND("SOL400-003", "Inquiry Not Found"),
     ;
 
     private String code;

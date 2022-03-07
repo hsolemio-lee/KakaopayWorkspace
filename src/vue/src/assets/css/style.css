@@ -1,0 +1,130 @@
+
+body {
+    position: relative;
+    padding: 20px;
+    width: 1200px;
+}
+.logout-wrapper {
+    position: absolute;
+    right: 30px;
+    top: 30px;
+}
+button {
+    background-color: gray;
+    border-radius: 2px;
+    min-width: 80px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    height: 30px;
+    margin: 0;
+    outline: none;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    margin: 5px 1px;
+}
+button:disabled {
+    background: #ccc;
+}
+
+td {
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    text-align: center;
+}
+.wrapper {
+    max-width: 100%;
+}
+.table-wrapper {
+    width: 100%;
+}
+table {
+    width: 100%;
+}
+table .basic {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    line-height: 1.5;
+    border: 1px solid #ccc;
+}
+table.basic thead {
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    background: gray;
+}
+table.basic thead th {
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #fff;
+}
+table.basic tr:hover {
+    background: rgb(228, 225, 225);
+    cursor: pointer;
+}
+table.basic td {
+    padding: 10px;
+    max-width: 200px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    text-align: center;
+    vertical-align: middle;
+}
+table.sub-table thead th {
+    padding: 0px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #fff;
+}
+table.sub-table td {
+    padding: 10px;
+    max-width: 200px;
+    vertical-align: top;
+    border-bottom: 0px solid #ccc;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    text-align: center;
+    vertical-align: middle;
+}
+.pagination-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.pagination {
+  display: inline-block;
+}
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+.pagination a:hover:not(.active) {background-color: #ddd;}
+.col-1 {
+    width: 10%;
+}
+.col-2 {
+    width: 20%;
+}
+.col-3 {
+    width: 30%;
+}

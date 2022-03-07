@@ -20,6 +20,7 @@ public class LoginController {
     public ResponseEntity<LoginDTO> loginCheck(@AuthenticationPrincipal PrincipalDetails principalDetails) {
         LoginDTO loginDTO = LoginDTO.builder()
                 .userId(principalDetails.getUser().getId())
+                .role(principalDetails.getUser().getRole())
                 .build();
         return ResponseEntity.ok(loginDTO);
     }

@@ -1,19 +1,20 @@
 <template>
-    <div fill-height style="max-width: 450px;">
-        <div flat >
+    <div style="max-width: 450px;">
+        <div >
             <h2>Login</h2>
         </div>
-        <div class="pa-3">
-        <BaseTextField :label="'User ID'" v-model="userId"></BaseTextField>
-        <BaseTextField :label="'Password'" v-model="password"></BaseTextField>               
-        <button
-            color="primary"
-            depressed
-            large
-            block
-            @click="login({id: userId,authCode: password})"
-        >Login</button>
+        <div>
+            <BaseTextField :label="'User ID'" v-model="userId"></BaseTextField>
+            <BaseTextField :label="'Password'" v-model="password" type="password"></BaseTextField>             
         </div>
+        <div>   
+            <button
+                @click="login({id: userId,authCode: password})"
+            >Login</button>
+            <button
+                @click="goToJoinPage()"
+            >회원가입</button>
+        </div> 
     </div>
 </template>
 <script>
@@ -31,6 +32,9 @@ export default {
     },
     methods: {
         ...mapActions(["login"]),
+        goToJoinPage() {
+            this.$router.push('/joinForm');
+        }
     }
 }
 </script>

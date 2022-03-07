@@ -12,4 +12,7 @@ public interface UserConverter extends EntityConverter<UserDTO, User> {
 
     @Mapping(target="createDate", expression = "java(this.getCurrentDateTime())")
     User toEntity(UserDTO dto);
+
+    @Mapping(target = "authCode", ignore = true)
+    UserDTO toDto(User entity);
 }

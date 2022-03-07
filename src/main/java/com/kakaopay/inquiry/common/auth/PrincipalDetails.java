@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Optional;
 
 @Data
 public class PrincipalDetails implements UserDetails {
@@ -42,7 +43,7 @@ public class PrincipalDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return user.getName();
+        return Optional.ofNullable(user).orElse(new User()).getId();
     }
 
     @Override

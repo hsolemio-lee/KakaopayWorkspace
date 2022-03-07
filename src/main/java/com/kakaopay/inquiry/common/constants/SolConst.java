@@ -9,4 +9,9 @@ public class SolConst {
     /* ROLE */
     public static final String ROLE_USER = "USER";
     public static final String ROLE_MANAGER = "MANAGER";
+
+    /* INQUIRY STATUS */
+    public static final String NOT_ASSIGNED = "NOT_ASSIGNED";
+    public static final String ASSIGNED = "ASSIGNED";
+    public static final String REPLY_COMPLETE = "REPLY_COMPLETE";
 }

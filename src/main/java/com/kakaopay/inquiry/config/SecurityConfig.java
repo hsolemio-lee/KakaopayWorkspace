@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -53,6 +54,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilter(new JwtAuthenticateFilter(authenticationManager(), env))
                 .addFilter(new JwtAuthorizationFilter(authenticationManager(), userRepository, env))
                 .authorizeRequests()
+                .antMatchers(HttpMethod.POST, "/rest/v1/user").permitAll()
+                .antMatchers("/rest/v1/**").hasAnyAuthority("USER", "MANAGER")
                 .anyRequest().permitAll();
     }
 

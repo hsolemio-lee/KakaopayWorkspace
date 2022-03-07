@@ -16,4 +16,4 @@
 build/
 .gradle/
 .idea
-
+src/main/resources/public

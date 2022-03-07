@@ -38,6 +38,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(ServiceException.class)
     public Map<String, List<Map<String, Object>>> serviceException(ServiceException ex) {
+        log.error(ex.getMessage());
         ErrorDescription errorDescription = ex.getErrorDescription();
         return responseFormat(errorDescription, ex);
     }
@@ -45,12 +46,14 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(BindException.class)
     public Map<String, List<Map<String, Object>>> constraintException(BindException ex) {
+        log.error(ex.getMessage());
         return responseFormat(ex.getFieldErrors());
     }
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
     public Map<String, List<Map<String, Object>>> unknownException(Exception ex) {
+        log.error(ex.getMessage());
         ErrorDescription errorDescription = new ErrorDescription(ErrorCode.UNKNOWN_ERROR.getCode(), ex.getMessage());
         return responseFormat(errorDescription, ex);
     }

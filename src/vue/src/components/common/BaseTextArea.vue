@@ -1,10 +1,10 @@
 <template>
 <div class="text-field-wrapper">
     <p>{{label}}</p>
-    <input
-        :type="type"
+    <textarea
         v-model="value"
         @change="change"
+        :readonly="readOnly"
     /> 
 </div>
 </template>
@@ -16,15 +16,22 @@ export default {
             type: String,
             default: () => ""
         },
-        type: {
+        readOnly: {
+            type: Boolean,
+            default: () => false
+        },
+        val: {
             type: String,
-            default: () => 'text'
+            default: () => ""
         }
     },
     data() {
         return {
             value: "",
         }
+    },
+    created() {
+        this.value = this.val;
     },
     methods: {
         change(e) {
@@ -37,12 +44,16 @@ export default {
 <style scoped>
 .text-field-wrapper {
     display: flex;
-    max-height: 30px;
-    align-items: center;
+    max-height: 100px;
     margin: 10px;
 }
 .text-field-wrapper > p {
-    margin: 10px;
+    margin: 10px 10px 10px 10px;
     width: 100px;
+}
+textarea {
+    resize: none;
+    width: 200px;
+    height: 100px;
 }
 </style>
