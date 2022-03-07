@@ -10,7 +10,6 @@ import org.mapstruct.factory.Mappers;
 public interface InquiryConverter extends EntityConverter<InquiryDTO, Inquiry> {
     InquiryConverter INSTANCE = Mappers.getMapper(InquiryConverter.class);
 
-    @Mapping(target="registerId", expression = "java(this.getUserId())")
     @Mapping(target="createDate", expression = "java(this.getCurrentDateTime())")
     Inquiry toEntity(InquiryDTO dto);
 }

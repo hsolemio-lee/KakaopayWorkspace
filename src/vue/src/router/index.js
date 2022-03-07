@@ -17,9 +17,7 @@ const authUser = (to, from, next) => {
   const userInfo = store.state.userInfo;
   
   if(store.state.isLogin) {
-    if(to === 'userHome' && userInfo.role !== 'USER') {
-      next("/403");
-    } else if(to === 'managerHome' && userInfo.role !== 'MANAGER'){
+    if(to === 'managerHome' && userInfo.role && userInfo.role !== 'MANAGER'){
       next("/403");
     } else {
       next();
@@ -37,7 +35,6 @@ const routes = [
   {
     path: "/user/home",
     name: "userHome",
-    beforeEnter: authUser,
     component: () =>
       import("../views/UserHome.vue"),
   },
@@ -51,7 +48,6 @@ const routes = [
   {
     path: "/inquiry/register",
     name: "registerInquiry",
-    beforeEnter: authUser,
     component: () =>
       import("../views/RegisterInquiry.vue"),
   },
@@ -66,7 +62,6 @@ const routes = [
   {
     path: "/inquiry/detail",
     name: "inquiryDetail",
-    beforeEnter: authUser,
     component: () =>
       import("../views/InquiryDetail.vue"),
     props: true,

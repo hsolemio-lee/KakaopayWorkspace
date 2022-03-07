@@ -91,18 +91,7 @@ public class InquiryServiceImplTest {
     }
 
     @Test
-    public void _04_문의조회_With_REGISTER_ID_OK() {
-        when(inquiryRepository.findByRegisterId(any(), any())).thenReturn(new PageImpl<>(getMockInquiryList(), PageRequest.of(0, 10), 1));
-
-        Page<InquiryDTO> result = inquiryService.getInquiryPage("test", PageRequest.of(0, 10));
-
-        assertThat(result.getContent().size()).isEqualTo(1);
-        assertThat(result.getContent().get(0).getId()).isEqualTo(1L);
-        assertThat(result.getTotalPages()).isEqualTo(1);
-    }
-
-    @Test
-    public void _05_문의조회_Without_REGISTER_ID_OK() {
+    public void _04_문의조회_Without_REGISTER_ID_OK() {
         Pageable pageable = PageRequest.of(0, 10);
         when(inquiryRepository.findAll(pageable)).thenReturn(new PageImpl<>(getMockInquiryList(), pageable, 1));
 
@@ -114,7 +103,7 @@ public class InquiryServiceImplTest {
     }
 
     @Test
-    public void _06_MANAGER할당_OK() {
+    public void _05_MANAGER할당_OK() {
         when(inquiryRepository.findById(anyLong())).thenReturn(Optional.of(getMockInquiry()));
         when(inquiryRepository.save(any())).thenReturn(getMockInquiry(ASSIGNED));
         InquiryDTO result = inquiryService.assignManager("test", 1L);
@@ -125,14 +114,14 @@ public class InquiryServiceImplTest {
     }
 
     @Test
-    public void _07_ID조회_존재하지않을때_MANAGER할당_FAIL() {
+    public void _06_ID조회_존재하지않을때_MANAGER할당_FAIL() {
         when(inquiryRepository.findById(anyLong())).thenReturn(Optional.empty());
         assertThrows(ServiceException.class, () ->  inquiryService.assignManager("test", 1L));
 
     }
 
     @Test
-    public void _08_답변생성_OK() {
+    public void _07_답변생성_OK() {
         when(inquiryRepository.findById(anyLong())).thenReturn(Optional.of(getMockInquiry()));
         when(replyRepository.save(any())).thenReturn(getMockReply());
         when(inquiryRepository.save(any())).thenReturn(getMockInquiry());
@@ -148,7 +137,7 @@ public class InquiryServiceImplTest {
     }
 
     @Test
-    public void _09_ID조회_존재하지않을때_답변생성_FAIL() {
+    public void _08_ID조회_존재하지않을때_답변생성_FAIL() {
         when(inquiryRepository.findById(anyLong())).thenReturn(Optional.empty());
         assertThrows(ServiceException.class, () ->  inquiryService.createReply(getMockReplyDTO()));
     }

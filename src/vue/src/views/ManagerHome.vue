@@ -74,7 +74,7 @@ export default {
     },
     methods: {
         getPageItems() {
-            this.$http.get('/rest/v1/inquiry/manager/page', {
+            this.$http.get('/rest/v1/inquiry/page', {
                 params: {
                     page: this.searchInfo.page,
                     size: this.searchInfo.size,

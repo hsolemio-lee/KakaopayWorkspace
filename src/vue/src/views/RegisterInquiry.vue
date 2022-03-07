@@ -5,6 +5,7 @@
         </div>
         <div>
             <BaseTextField :label="'Title'" v-model="inquiryForm.title"></BaseTextField>
+            <BaseTextField :label="'등록자 ID'" v-model="inquiryForm.registerId"></BaseTextField>
             <BaseTextArea :label="'Content'" v-model="inquiryForm.content" :type="'textarea'"></BaseTextArea>
         </div>
         <div>        
@@ -25,6 +26,8 @@ export default {
             inquiryForm: {
                 title: "",
                 content: "",
+                registerId: '',
+                authCode: '',
             },
         }
     },

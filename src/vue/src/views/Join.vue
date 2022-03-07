@@ -6,8 +6,7 @@
         <div>
             <BaseTextField :label="'User ID'" v-model="userForm.id"></BaseTextField>
             <BaseTextField :label="'Password'" v-model="userForm.authCode" :type="'password'"></BaseTextField>
-            <BaseTextField :label="'Name'" v-model="userForm.name"></BaseTextField>    
-            <BaseSelectBox :label="'Role'" v-model="userForm.role" :items="selectRoles"></BaseSelectBox>
+            <BaseTextField :label="'Name'" v-model="userForm.name"></BaseTextField>
         </div>
         <div>        
             <button
@@ -28,18 +27,8 @@ export default {
                 id: "",
                 authCode: "",
                 name: "",
-                role: "USER",
+                role: "MANAGER",
             },
-            selectRoles: [
-                {
-                    text: "일반",
-                    value: "USER",
-                },
-                {
-                    text: "관리자",
-                    value: "MANAGER",
-                }
-            ]
         }
     },
     computed: {

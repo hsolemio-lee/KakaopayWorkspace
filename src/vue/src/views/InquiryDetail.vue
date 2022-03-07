@@ -52,11 +52,10 @@ export default {
     },
     methods: {
         onClickList() {
-            console.log(this.userInfo);
-            if(this.userInfo.role === "USER") {
-                this.$router.push("/user/home");
-            } else {
+            if(this.userInfo && this.userInfo.role && this.userInfo.role === "MANAGER") {
                 this.$router.push("/manager/home");
+            } else {
+                this.$router.push("/user/home");
             }
         },
     }

@@ -12,6 +12,7 @@ import java.time.Instant;
 @Builder
 public class InquiryDTO {
     Long id;
+    @NotBlank(message = "Register ID is mandatory")
     String registerId;
     @NotBlank(message = "Title is mandatory")
     String title;

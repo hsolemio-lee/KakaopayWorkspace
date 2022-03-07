@@ -26,6 +26,7 @@ export default new Vuex.Store({
     logout(state) {
       state.isLogin = false;
       state.userInfo = null;
+      localStorage.clear();
     },
     showProgressBar(state, arg) {
       state.progressBar = arg;

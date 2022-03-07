@@ -29,12 +29,7 @@ public class InquiryController {
     }
 
     @GetMapping("/page")
-    public ResponseEntity<Page<InquiryDTO>> getInquiryPage(@AuthenticationPrincipal PrincipalDetails principalDetails, Pageable pageable) {
-        return ResponseEntity.ok(inquiryService.getInquiryPage(principalDetails.getUser().getId(), pageable));
-    }
-
-    @GetMapping("/manager/page")
-    public ResponseEntity<Page<InquiryDTO>> getManagerInquiryPage(@AuthenticationPrincipal PrincipalDetails principalDetails, Pageable pageable) {
+    public ResponseEntity<Page<InquiryDTO>> getManagerInquiryPage(Pageable pageable) {
         return ResponseEntity.ok(inquiryService.getInquiryPage(pageable));
     }
 

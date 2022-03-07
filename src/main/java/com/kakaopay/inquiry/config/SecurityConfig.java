@@ -55,6 +55,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilter(new JwtAuthorizationFilter(authenticationManager(), userRepository, env))
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/rest/v1/user").permitAll()
+                .antMatchers(HttpMethod.POST, "/rest/v1/inquiry").permitAll()
+                .antMatchers(HttpMethod.GET, "/rest/v1/inquiry/page").permitAll()
                 .antMatchers("/rest/v1/**").hasAnyAuthority("USER", "MANAGER")
                 .anyRequest().permitAll();
     }

@@ -13,7 +13,10 @@
             >Login</button>
             <button
                 @click="goToJoinPage()"
-            >회원가입</button>
+            >매니저 등록</button>
+            <button
+                @click="goToUserPage()"
+            >고객 페이지</button>
         </div> 
     </div>
 </template>
@@ -34,6 +37,9 @@ export default {
         ...mapActions(["login"]),
         goToJoinPage() {
             this.$router.push('/joinForm');
+        },
+        goToUserPage() {
+            this.$router.push('/user/home');
         }
     }
 }
