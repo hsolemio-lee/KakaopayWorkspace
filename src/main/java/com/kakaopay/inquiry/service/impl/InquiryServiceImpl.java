@@ -33,18 +33,13 @@ public class InquiryServiceImpl implements InquiryService {
 
     @Override
     public InquiryDTO createInquiry(InquiryDTO dto) {
-        if(null != dto.getId() && null != inquiryRepository.findById(dto.getId())) {
+        if(null != dto.getId() && inquiryRepository.findById(dto.getId()).isPresent()) {
             throw new ServiceException(ErrorCode.ID_EXIST);
         }
         Inquiry entity = InquiryConverter.INSTANCE.toEntity(dto);
         entity.setStatus(NOT_ASSIGNED);
         entity = inquiryRepository.save(entity);
         return InquiryConverter.INSTANCE.toDto(entity);
-    }
-
-    @Override
-    public InquiryDTO updateInquiry(InquiryDTO dto) {
-        return null;
     }
 
     @Override
@@ -64,7 +59,7 @@ public class InquiryServiceImpl implements InquiryService {
         Inquiry entity = inquiryRepository.findById(inquiryId).orElseThrow(() -> new ServiceException(ErrorCode.INQUIRY_NOT_FOUND));
         entity.setManagerId(managerId);
         entity.setStatus(ASSIGNED);
-        inquiryRepository.save(entity);
+        entity = inquiryRepository.save(entity);
         return InquiryConverter.INSTANCE.toDto(entity);
     }
 

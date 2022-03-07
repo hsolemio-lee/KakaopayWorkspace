@@ -31,7 +31,7 @@ public class PrincipalDetails implements UserDetails {
         return Collections.singletonList(new GrantedAuthority() {
             @Override
             public String getAuthority() {
-                return user.getRole();
+                return Optional.ofNullable(user).orElse(new User()).getRole();
             }
         });
     }

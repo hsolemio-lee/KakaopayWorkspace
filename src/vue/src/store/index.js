@@ -22,7 +22,6 @@ export default new Vuex.Store({
     loginError(state) {
       state.isLogin = false;
       state.isLoginError = true;
-      alert("Login fail...");
     },
     logout(state) {
       state.isLogin = false;
@@ -44,6 +43,7 @@ export default new Vuex.Store({
       })
       .catch(error => {
         console.log(error);
+        alert("Login fail...");
         commit('loginError');
       });
     },
@@ -67,7 +67,6 @@ export default new Vuex.Store({
       .catch(error => {
         console.log(error);
         commit('logout');
-        alert("Login fail...");
         router.push({name: 'login'});
       })
     },

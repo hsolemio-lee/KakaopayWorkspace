@@ -8,7 +8,6 @@ import org.springframework.data.domain.Pageable;
 public interface InquiryService {
 
     InquiryDTO createInquiry(InquiryDTO dto);
-    InquiryDTO updateInquiry(InquiryDTO dto);
 
     Page<InquiryDTO> getInquiryPage(String id, Pageable pageable);
     Page<InquiryDTO> getInquiryPage(Pageable pageable);
